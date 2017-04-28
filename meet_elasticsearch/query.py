@@ -41,7 +41,7 @@ def bigram_multi_match_query(term):
     }
 
 
-def bigram_multi_match_most_fields_query(term):
+def bigram_most_fields_query(term):
     return {
         'query': term,
         'fields': ['name', 'name.bigram'],
@@ -49,7 +49,7 @@ def bigram_multi_match_most_fields_query(term):
     }
 
 
-def bigram_multi_match_cross_fields_query(term):
+def bigram_cross_fields_query(term):
     return {
         'query': term,
         'fields': ['name', 'name.bigram'],
@@ -57,7 +57,7 @@ def bigram_multi_match_cross_fields_query(term):
     }
 
 
-def bigram_multi_match_and_query(term):
+def bigram_and_query(term):
     return {
         'query': term,
         'fields': ['name', 'name.bigram'],
@@ -65,7 +65,7 @@ def bigram_multi_match_and_query(term):
     }
 
 
-def bigram_multi_match_most_fields_and_query(term):
+def bigram_most_fields_and_query(term):
     return {
         'query': term,
         'fields': ['name', 'name.bigram'],
@@ -74,7 +74,7 @@ def bigram_multi_match_most_fields_and_query(term):
     }
 
 
-def bigram_multi_match_most_fields_and_fuzzy_query(term):
+def bigram_most_fields_and_fuzzy_query(term):
     return {
         'query': term,
         'fields': ['name', 'name.bigram'],
@@ -84,7 +84,7 @@ def bigram_multi_match_most_fields_and_fuzzy_query(term):
     }
 
 
-def bigram_multi_match_cross_fields_and_query(term):
+def bigram_cross_fields_and_query(term):
     return {
         'query': term,
         'fields': ['name', 'name.bigram'],
@@ -93,7 +93,7 @@ def bigram_multi_match_cross_fields_and_query(term):
     }
 
 
-def bigram_multi_match_phrase_query(term):
+def bigram_phrase_query(term):
     return {
         'query': term,
         'fields': ['name', 'name.bigram'],
@@ -101,7 +101,7 @@ def bigram_multi_match_phrase_query(term):
     }
 
 
-def bigram_multi_match_phrase_prefix_query(term):
+def bigram_phrase_prefix_query(term):
     return {
         'query': term,
         'fields': ['name', 'name.bigram'],
@@ -109,14 +109,14 @@ def bigram_multi_match_phrase_prefix_query(term):
     }
 
 
-def bigram_trigram_multi_match_query(term):
+def bigram_trigram_query(term):
     return {
         'query': term,
         'fields': ['name', 'name.bigram', 'name.trigram'],
     }
 
 
-def bigram_multi_match_boosted_name_query(term):
+def bigram_boosted_name_query(term):
     return {
         'query': term,
         'fields': ['name^5', 'name.bigram'],
@@ -124,7 +124,7 @@ def bigram_multi_match_boosted_name_query(term):
     }
 
 
-def bigram_multi_match_boosted_bigram_query(term):
+def bigram_boosted_bigram_query(term):
     return {
         'query': term,
         'fields': ['name', 'name.bigram^5'],

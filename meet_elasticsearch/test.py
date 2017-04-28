@@ -23,7 +23,7 @@ def _test_internal(typo_function, strategies):
         recalls = []
         reciprocal_ranks = []
 
-        models = [choice(all_companies) for i in range(0, 9)]
+        models = [choice(all_companies) for i in range(0, 999)]
         terms = [typo_function(model['name']) for model in models]
 
         requests = []
