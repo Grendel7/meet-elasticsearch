@@ -9,23 +9,17 @@ def _build_table(name, results):
     :param results: The result set.
     :return: 
     """
-    measurements = sorted([measurement for measurement in
-                    next(iter(results.values())).keys()])
+
+    measurements = sorted([measurement for measurement in results[0][1].keys()])
 
     table = ','.join([key.replace('_', ' ') for key in [name] + measurements])\
             + '\n'
 
-    for typo in iter(results):
-        values = [str(results[typo][m]) for m in measurements]
+    for typo, result in results:
+        values = [str(result[m]) for m in measurements]
         table += ','.join([typo.replace('_', ' ')] + values) + '\n'
 
     return table
-
-
-def test_and_print(strategy_a, strategy_b):
-    results = test(strategy_a, strategy_b)
-    tables = [_build_table(name, result) for name, result in results]
-    print('\n\n'.join(tables))
 
 
 if __name__ == "__main__":
@@ -38,4 +32,5 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    test_and_print(args.strategy_a, args.strategy_b)
+    print('\n\n'.join([_build_table(name, result) for name, result
+                       in test(args.strategy_a, args.strategy_b)]))

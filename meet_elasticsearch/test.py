@@ -1,4 +1,3 @@
-from functools import reduce
 from random import choice
 from statistics import mean, stdev
 
@@ -61,7 +60,7 @@ def _test_internal(typo_function, strategies):
             'reciprocal_stdev': stdev(reciprocal_ranks),
         }
 
-    return results
+    return [(strategy, results[strategy]) for strategy in strategies]
 
 
 def test(strategy_a, strategy_b):
