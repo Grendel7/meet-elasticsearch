@@ -47,9 +47,8 @@ def create():
                         "max_gram": 3,
                         "token_cars": ['letter', 'digit']
                     }
-                },
+                }
             }
-
         },
         "mappings": {
             "company": {
