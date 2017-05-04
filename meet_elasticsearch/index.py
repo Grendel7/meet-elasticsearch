@@ -39,13 +39,13 @@ def create():
                         "type": "ngram",
                         "min_gram": 2,
                         "max_gram": 2,
-                        "token_cars": ['letter', 'digit']
+                        "token_chars": ['letter', 'digit']
                     },
                     "trigram_tokenizer": {
                         "type": "ngram",
                         "min_gram": 3,
                         "max_gram": 3,
-                        "token_cars": ['letter', 'digit']
+                        "token_chars": ['letter', 'digit']
                     }
                 }
             }
