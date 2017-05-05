@@ -16,7 +16,7 @@ def _test_internal(typo_function, strategies):
     results = {}
 
     for strategy_name in strategies:
-        strategy = getattr(query, strategy_name+'_query')
+        strategy = getattr(query, strategy_name)
 
         precisions = []
         recalls = []
@@ -29,11 +29,7 @@ def _test_internal(typo_function, strategies):
 
         for term in terms:
             requests.append({})
-            requests.append({
-                "query": {
-                    "multi_match": strategy(term)
-                }
-            })
+            requests.append(strategy(term))
 
         responses = elasticsearch.msearch(requests, 'company', 'company')
 
