@@ -3,12 +3,6 @@ from . import elasticsearch
 from . import database
 
 
-def _convert_to_doc(record):
-    return {
-        'name': record['name'],
-    }
-
-
 def create():
     return IndicesClient(elasticsearch).create('company', {
         "settings": {
@@ -17,14 +11,6 @@ def create():
             },
             "analysis": {
                 "analyzer": {
-                    "bigram_analyzer": {
-                        "type": "custom",
-                        "tokenizer": "bigram_tokenizer",
-                        "filter": [
-                            "standard",
-                            "lowercase"
-                        ]
-                    },
                     "trigram_analyzer": {
                         "type": "custom",
                         "tokenizer": "trigram_tokenizer",
@@ -35,12 +21,6 @@ def create():
                     }
                 },
                 "tokenizer": {
-                    "bigram_tokenizer": {
-                        "type": "ngram",
-                        "min_gram": 2,
-                        "max_gram": 2,
-                        "token_chars": ['letter', 'digit']
-                    },
                     "trigram_tokenizer": {
                         "type": "ngram",
                         "min_gram": 3,
@@ -56,10 +36,6 @@ def create():
                     "name": {
                         "type": "text",
                         "fields": {
-                            "bigram": {
-                                "type": "text",
-                                "analyzer": "bigram_analyzer",
-                            },
                             "trigram": {
                                 "type": "text",
                                 "analyzer": "trigram_analyzer",
@@ -73,7 +49,7 @@ def create():
 
 
 def delete():
-    return IndicesClient(elasticsearch).delete('company')
+    return IndicesClient(elasticsearch).delete('company', ignore=404)
 
 
 def populate():
@@ -87,6 +63,8 @@ def populate():
                 '_id': record['id']
             }
         })
-        actions.append(_convert_to_doc(record))
+        actions.append({
+            'name': record['name'],
+        })
 
     elasticsearch.bulk(actions)
