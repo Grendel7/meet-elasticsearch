@@ -65,5 +65,4 @@ def test(strategy_a, strategy_b):
                  typo.levenshtein_1, typo.levenshtein_2,
                  typo.levenshtein_word_1, typo.levenshtein_word_2]
 
-    return [(function.__name__, _test_internal(function, [strategy_a, strategy_b]))
-            for function in functions]
+    return [(func.__name__, _test_internal(func, [strategy_a, strategy_b])) for func in functions]
